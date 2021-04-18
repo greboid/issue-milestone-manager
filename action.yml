@@ -1,0 +1,11 @@
+name: "Issue Milestone Assignment"
+author: "Greg Holmes"
+description: "Assigns all issues without a milestone to a milestone on tag, creating the milestone if required"
+inputs:
+  token:
+    description: 'Github token to authenticate against'
+    required: true
+    default: ''
+runs:
+  using: "docker"
+  image: "docker://ghcr.io/greboid/issue-milestone-manager:1"
