@@ -31,15 +31,15 @@ func main() {
 
 func parseInput(token string, repository string, ref string, sha string) (IssueManager, string, string, string, error) {
 	if token == "" {
-		return nil, "", "", "", errors.New("no token specified")
+		return nil, "", "", "", fmt.Errorf("no token specified")
 	}
 	repo, user := getRepo(repository)
 	if repo == "" || user == "" {
-		return nil, "", "", "", errors.New("no user or repo")
+		return nil, "", "", "", fmt.Errorf("no user or repo")
 	}
 	version := refToVersion(ref, sha)
 	if version == "unknown" {
-		return nil, "", "", "", errors.New("unable to get version")
+		return nil, "", "", "", fmt.Errorf("unable to get version")
 	}
 	client := rest.NewClient(token)
 	return client, user, repo, version, nil
@@ -48,17 +48,17 @@ func parseInput(token string, repository string, ref string, sha string) (IssueM
 func tagIssuesWithVersionAsMilestone(client IssueManager, user string, repo string, version string) error {
 	issues, err := client.GetIssues(user, repo)
 	if err != nil {
-		return errors.New("unable to get issues")
+		return fmt.Errorf("unable to get issues: %s", err)
 	}
 	milestones, err := client.GetMilestones(user, repo)
 	if err != nil {
-		return errors.New("unable to get milestones")
+		return fmt.Errorf("unable to get milestones: %s", err.Error())
 	}
 	currentMilestone := checkMilestoneExists(milestones, &version)
 	if currentMilestone == nil {
 		currentMilestone, err = client.CreateMilestone(user, repo, version)
 		if err != nil {
-			return errors.New("unable to create milestone")
+			return fmt.Errorf("unable to create milestone: %s", err.Error())
 		}
 	}
 	updateErrors := UpdateIssues(client, user, repo, issues, *currentMilestone)
