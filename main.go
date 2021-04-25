@@ -33,7 +33,7 @@ func parseInput(token string, repository string, ref string, sha string) (IssueM
 	if token == "" {
 		return nil, "", "", "", fmt.Errorf("no token specified")
 	}
-	repo, user := getRepo(repository)
+	user, repo := getRepo(repository)
 	if repo == "" || user == "" {
 		return nil, "", "", "", fmt.Errorf("no user or repo")
 	}
