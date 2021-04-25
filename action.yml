@@ -9,3 +9,6 @@ inputs:
 runs:
   using: "docker"
   image: "docker://ghcr.io/greboid/issue-milestone-manager:1"
+branding:
+  icon: 'activity'
+  color: 'white'
