@@ -83,7 +83,7 @@ func (c *Client) GetIssues(user string, repo string) ([]*github.Issue, error) {
 	}
 	var allIssues []*github.Issue
 	for {
-		issues, resp, err := c.client.Search.Issues(c.ctx, fmt.Sprintf("is:issue user:%s repo:%s state:closed no:milestone", user, repo), opt)
+		issues, resp, err := c.client.Search.Issues(c.ctx, fmt.Sprintf("is:issue repo:%s/%s state:closed no:milestone", user, repo), opt)
 		if err != nil {
 			return nil, err
 		}
