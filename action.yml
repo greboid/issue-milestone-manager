@@ -8,8 +8,7 @@ inputs:
     default: ''
 runs:
   using: "docker"
-#  image: "docker://ghcr.io/greboid/issue-milestone-manager:1.0.2"
-  image: 'Dockerfile'
+  image: "docker://ghcr.io/greboid/issue-milestone-manager:2"
 branding:
   icon: 'activity'
   color: 'white'
