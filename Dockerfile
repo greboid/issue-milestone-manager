@@ -1,4 +1,4 @@
-FROM docker.io/golang:1.17.1@sha256:b8440455cf6c8dbaf86edad5482fcbc4829e1680f0437a5572df640a6379e5d8 AS build
+FROM docker.io/golang:1.17.1@sha256:c9fbf6d2c4730573ba487805e859bc80239af1985641c7b031bff046b51f60db AS build
 
 # Build the app
 WORKDIR /app
