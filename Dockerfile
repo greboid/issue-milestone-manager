@@ -10,7 +10,7 @@ RUN set -eux; \
     mkdir /data; \
     touch --date=@0 /go/bin/app /notices /data
 
-FROM gcr.io/distroless/static:nonroot@sha256:07869abb445859465749913267a8c7b3b02dc4236fbc896e29ae859e4b360851
+FROM ghcr.io/greboid/dockerfiles/base@sha256:93cb0a11840ca0bf96975b0e9303a234bae7988481533300702d12a5857b630a
 COPY --from=build /notices /notices
 COPY --from=build /go/bin/app /issue-tagger
 WORKDIR /
