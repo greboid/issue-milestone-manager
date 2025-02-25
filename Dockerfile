@@ -1,4 +1,4 @@
-FROM ghcr.io/greboid/dockerfiles/golang as build
+FROM golang:latest as build
 
 # Build the app
 WORKDIR /app
@@ -10,7 +10,7 @@ RUN set -eux; \
     mkdir /data; \
     touch --date=@0 /go/bin/app /notices /data
 
-FROM ghcr.io/greboid/dockerfiles/base
+FROM ghcr.io/greboid/dockerbase/nonroot:1.20250214.0
 COPY --from=build /notices /notices
 COPY --from=build /go/bin/app /issue-tagger
 WORKDIR /
