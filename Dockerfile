@@ -10,7 +10,7 @@ RUN set -eux; \
     mkdir /data; \
     touch --date=@0 /go/bin/app /notices /data
 
-FROM ghcr.io/greboid/dockerbase/nonroot:1.20260918.0
+FROM ghcr.io/greboid/dockerbase/nonroot:1.20261007.0
 COPY --from=build /notices /notices
 COPY --from=build /go/bin/app /issue-tagger
 WORKDIR /
